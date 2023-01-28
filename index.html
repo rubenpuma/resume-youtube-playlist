@@ -1,0 +1,18 @@
+<!-- TODO: Create links for previous playlists? -->
+
+<form name="myForm" action="ResumePlaylist.html" onsubmit="extractID()">
+    <label for="playlist">Playlist:</label><br>
+    <input type="text" id="playlist" name="playlist"><br>
+    <input type="submit" value="Watch">
+</form>
+
+<script>
+    function extractID() {
+        var playlist = document.getElementById('playlist')
+        if (playlist.value.includes('https')) {
+            playlist.value = playlist.value.split('=').pop()
+        }
+        console.log(playlist.value)
+        return true
+    }
+</script>
