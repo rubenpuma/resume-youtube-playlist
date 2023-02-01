@@ -1,18 +1,21 @@
-<!-- TODO: Create links for previous playlists? -->
+<!DOCTYPE html>
+<html>
+    <!-- TODO: Create links for previous playlists? -->
+    <link href="style.css" rel="stylesheet">
+    <form name="myForm" action="resume-youtube-playlist.html" onsubmit="extractID()">
+        <label for="playlist">Playlist:</label><br>
+        <input type="text" id="playlist" name="playlist"><br>
+        <input type="submit" value="Watch">
+    </form>
 
-<form name="myForm" action="resume-youtube-playlist.html" onsubmit="extractID()">
-    <label for="playlist">Playlist:</label><br>
-    <input type="text" id="playlist" name="playlist"><br>
-    <input type="submit" value="Watch">
-</form>
-
-<script>
-    function extractID() {
-        var playlist = document.getElementById('playlist')
-        if (playlist.value.includes('https')) {
-            playlist.value = playlist.value.split('=').pop()
+    <script>
+        function extractID() {
+            var playlist = document.getElementById('playlist')
+            if (playlist.value.includes('https')) {
+                playlist.value = playlist.value.split('=').pop()
+            }
+            console.log(playlist.value)
+            return true
         }
-        console.log(playlist.value)
-        return true
-    }
-</script>
+    </script>
+</html>

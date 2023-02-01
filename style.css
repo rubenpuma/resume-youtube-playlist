@@ -1,0 +1,18 @@
+html {
+    background: black;
+}
+
+label {
+    color: white;
+}
+
+body {
+    height: inherit;
+    margin: 0;
+}
+
+.add-button {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+}
