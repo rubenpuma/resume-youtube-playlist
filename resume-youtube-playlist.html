@@ -1,3 +1,4 @@
+<link rel="manifest" href="resume-youtube-playlist.webmanifest" />
 <div id="ytplayer"></div>
 
 <script>
@@ -15,9 +16,10 @@
     var player;
     function onYouTubePlayerAPIReady() {
         player = new YT.Player('ytplayer', {
-            //   height: '360',
-            //   width: '640',
+            width: '960',
+            height: '540',
             playerVars: {
+                autoplay: 0,
                 listtype: 'playlist',
                 list: playlist
             },
