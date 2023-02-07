@@ -28,24 +28,28 @@ function onYouTubePlayerAPIReady() {
 }
 
 function onPlayerReady(event) {
-    var playerIndex = getCookie(playlist)
+    var playerIndex = getCookie(playlist + ".index")
     console.log('Starting at index ' + playerIndex)
-    player.playVideoAt(playerIndex)
+    var playerTime = getCookie(playlist + ".time")
+    console.log('Starting at time ' + playerTime)
+    player.loadPlaylist(playlist, playerIndex, playerTime)
 }
 
 function onPlayerStateChange(event) {
-    // console.log(event.data)
-    if (event.data == YT.PlayerState.PLAYING) {
-        var playerIndex = player.getPlaylistIndex()
-        document.cookie = playlist + "=" + playerIndex
-        console.log('Playing video index ' + playerIndex);
-    }
 }
 
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === 'visible') {
         console.log('Opened window')
     } else {
+        var playerTime = player.getCurrentTime()
+        console.log('Saving at time ' + playerTime)
+        document.cookie = playlist + ".time=" + playerTime
+
+        var playerIndex = player.getPlaylistIndex()
+        document.cookie = playlist + ".index=" + playerIndex
+        console.log('Saving at video index ' + playerIndex);
+
         console.log('Minimized window')
     }
 });
