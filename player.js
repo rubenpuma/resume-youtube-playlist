@@ -42,6 +42,14 @@ function onPlayerStateChange(event) {
     }
 }
 
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === 'visible') {
+        console.log('Opened window')
+    } else {
+        console.log('Minimized window')
+    }
+});
+
 // returns the cookie with the given name, or 0 if not found
 // Modified to return a default index of 0 instead of undefined
 // Source: https://github.com/javascript-tutorial/en.javascript.info/blob/master/6-data-storage/01-cookie/cookie.js
