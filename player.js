@@ -43,7 +43,7 @@ document.addEventListener("visibilitychange", () => {
         console.log('Opened window')
     } else {
         var playerTime = player.getCurrentTime()
-        if (playerTime != 0) {
+        if (playerTime != 0) { // Ignore resets to 0, workaround for chrome
             console.log('Saving at time ' + playerTime)
             document.cookie = playlist + ".time=" + playerTime
         } else {
@@ -61,6 +61,15 @@ document.addEventListener("visibilitychange", () => {
         console.log('Minimized window')
     }
 });
+
+function resetCookies() {
+    player.loadPlaylist(playlist, 0, 0)
+    // Explicitly set cookies to 0 since we normally ignore resets to 0
+    document.cookie = playlist + '.time=0'
+    document.cookie = playlist + '.index=0'
+    window.localStorage.clear()
+    location.reload()
+}
 
 // returns the cookie with the given name, or 0 if not found
 // Modified to return a default index of 0 instead of undefined
