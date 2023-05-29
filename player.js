@@ -43,12 +43,20 @@ document.addEventListener("visibilitychange", () => {
         console.log('Opened window')
     } else {
         var playerTime = player.getCurrentTime()
-        console.log('Saving at time ' + playerTime)
-        document.cookie = playlist + ".time=" + playerTime
+        if (playerTime != 0) {
+            console.log('Saving at time ' + playerTime)
+            document.cookie = playlist + ".time=" + playerTime
+        } else {
+            console.log('Ignored player time reset')
+        }
 
         var playerIndex = player.getPlaylistIndex()
-        document.cookie = playlist + ".index=" + playerIndex
-        console.log('Saving at video index ' + playerIndex);
+        if (playerIndex != 0) {
+            document.cookie = playlist + ".index=" + playerIndex
+            console.log('Saving at video index ' + playerIndex);
+        } else {
+            console.log('Ignored player index reset')
+        }
 
         console.log('Minimized window')
     }
